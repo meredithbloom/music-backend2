@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'glacial-wave-24104.heroku
 # Application definition
 
 INSTALLED_APPS = [
+    'user_auth_api',
     'rest_framework',
     'corsheaders',
     'music_api',
