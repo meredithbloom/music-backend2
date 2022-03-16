@@ -2,8 +2,8 @@ from django.db import models
 
 # Create your models here.
 class Song(models.Model):
-    name = models.CharField(max_length = 100)
-    artist = models.CharField(max_length = 100)
+    name = models.CharField(max_length = 100, blank = True)
+    artist = models.CharField(max_length = 100, blank = True)
     genre_choices = [
         ('pop', 'Pop'),
         ('rock', 'Rock'),
@@ -16,6 +16,6 @@ class Song(models.Model):
         ('alternative', 'Alternative'),
         ('indie', 'Indie'),
     ]
-    genre = models.CharField(max_length = 100, choices=genre_choices, default='pop')
-    audio = models.CharField(max_length = 100)
-    image = models.CharField(max_length = 100)
+    genre = models.CharField(max_length = 100, choices=genre_choices, default='pop', blank = True)
+    audio = models.CharField(max_length = 100, blank = True)
+    image = models.CharField(max_length = 100, blank = True)
