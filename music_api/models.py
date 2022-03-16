@@ -16,6 +16,6 @@ class Song(models.Model):
         ('alternative', 'Alternative'),
         ('indie', 'Indie'),
     ]
-    genre = models.CharField(max_length = 100, choices=genre_choices, default='POP')
+    genre = models.CharField(max_length = 100, choices=genre_choices, default='pop')
     audio = models.CharField(max_length = 100)
     image = models.CharField(max_length = 100)
