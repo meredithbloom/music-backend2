@@ -1,4 +1,6 @@
 from django.db import models
+from music_api.models import Song
+
 
 # Create your models here.
 class User(models.Model):

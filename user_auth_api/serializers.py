@@ -26,7 +26,6 @@ class UserSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         #print(self)
         #print(instance)
-        
         user = User.objects.get(
             username=validated_data['username']
         )
