@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import User
 
 
+
 #allows you to create and check passwords
 from django.contrib.auth.hashers import make_password, check_password
 

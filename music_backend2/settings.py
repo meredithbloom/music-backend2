@@ -81,7 +81,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'music_backend2.wsgi.application'
-
+DJANGO_SETTINGS_MODULE = 'django-admin'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'music_backend2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'music_api',
+        'NAME': 'music_backend2',
         'USER': '',
         'PASSWORD': '',
         'HOST': 'localhost'
