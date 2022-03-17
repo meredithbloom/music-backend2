@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-)@llj233mh7tc=i3o@51!7v6f4#0iv*@=7js#s5s09*yf%l#tn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'glacial-wave-24104.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', 'glacial-wave-24104.herokuapp.com']
 
 
 # Application definition
