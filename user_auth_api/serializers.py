@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User
+from .models import UserAccount
 
 
 
@@ -7,15 +7,15 @@ from .models import User
 from django.contrib.auth.hashers import make_password, check_password
 
 #converts python in models to JSON
-class UserSerializer(serializers.ModelSerializer):
+class UserAccountSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User 
+        model = UserAccount 
         fields = ('id', 'name', 'username', 'password')
         
     # hashes a new user's password when they create an account
     def create(self, validated_data):
         print(self)
-        user = User.objects.create(
+        user = UserAccount.objects.create(
             name=validated_data['name'],
             username=validated_data['username'],
             password=make_password(validated_data['password'])
@@ -27,7 +27,7 @@ class UserSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         #print(self)
         #print(instance)
-        user = User.objects.get(
+        user = UserAccount.objects.get(
             username=validated_data['username']
         )
         user.name = validated_data['name']
