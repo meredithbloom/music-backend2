@@ -2,8 +2,9 @@ from django.shortcuts import render
 
 from rest_framework import generics
 from .serializers import UserSerializer
-from .models import User 
-
+from .models import User
+from .models import Account
+from .serializers import AccountSerializer
 #allows you to create and check passwords
 from django.contrib.auth.hashers import make_password, check_password
 
@@ -34,14 +35,22 @@ class UserList(generics.ListCreateAPIView):
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all().order_by('id')
     serializer_class = UserSerializer
-    
-    
+
+class AccountList(generics.ListCreateAPIView):
+    queryset = Account.objects.all().order_by('id') # tell django how to retrieve all objects from the DB, order by id ascending
+    serializer_class = AccountSerializer # tell django what serializer to use
+
+class AccountDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Account.objects.all().order_by('id')
+    serializer_class = AccountSerializer
+
+
 # this is the function that checks auth
 def check_login(request):
     #if a get request is made, return an empty {}
     if request.method == 'GET':
         return JsonResponse({})
-    
+
     #if a put request is made
     if request.method == 'PUT':
         #make the request json format
@@ -50,7 +59,7 @@ def check_login(request):
         password = jsonRequest['password'] #get password from the request
         if User.objects.get(username=username): # see if username exists in db
             user = User.objects.get(username=username) #find user objects with matching username
-            
+
             if check_password(password, user.password): #check if passwords match
                 #if passwords match, return a user dictionary/objects
                 return JsonResponse({'id': user.id, 'username': user.username, 'name': user.name})
@@ -58,4 +67,3 @@ def check_login(request):
                 return JsonResponse({})
         else: #if username doesn't exist in db, return an empty dictionary
             return JsonResponse({})
-        
