@@ -1,8 +1,12 @@
 from django.shortcuts import render
 
 from rest_framework import generics
+
+from .models import Account
+from .serializers import AccountSerializer
 from .serializers import UserAccountSerializer
 from .models import UserAccount 
+
 
 #allows you to create and check passwords
 from django.contrib import auth 
@@ -33,17 +37,28 @@ class UserAccountList(generics.ListCreateAPIView):
 # DELETE /users/:id
 # PUT /users/:id
 
+
+class AccountList(generics.ListCreateAPIView):
+    queryset = Account.objects.all().order_by('id') # tell django how to retrieve all objects from the DB, order by id ascending
+    serializer_class = AccountSerializer # tell django what serializer to use
+
+class AccountDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Account.objects.all().order_by('id')
+    serializer_class = AccountSerializer
+
+
 class UserAccountDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = UserAccount.objects.all().order_by('id')
     serializer_class = UserAccountSerializer
     
     
+
 # this is the function that checks auth
 def check_login(request):
     #if a get request is made, return an empty {}
     if request.method == 'GET':
         return JsonResponse({})
-    
+
     #if a put request is made
     if request.method == 'PUT':
         #make the request json format
@@ -52,7 +67,7 @@ def check_login(request):
         password = jsonRequest['password'] #get password from the request
         if UserAccount.objects.get(username=username): # see if username exists in db
             user = UserAccount.objects.get(username=username) #find user objects with matching username
-            
+
             if check_password(password, user.password): #check if passwords match
                 #if passwords match, return a user dictionary/objects & set session object
                 request.session['id'] = 'id'
@@ -65,10 +80,10 @@ def check_login(request):
             return JsonResponse({})
 
 
-
 # logout function
 def logout_view(request):
     auth.logout(request)
     return HttpResponseRedirect("/useraccount/loggedout/")
     #redirect to success page
     
+
