@@ -19,3 +19,4 @@ class Song(models.Model):
     genre = models.CharField(max_length = 100, choices=genre_choices, default='pop', blank = True)
     audio = models.CharField(max_length = 100, blank = True)
     image = models.CharField(max_length = 100, blank = True)
+    price = models.DecimalField(max_digits=6, decimal_places=2, default = '1.29')
