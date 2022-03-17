@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'glacial-wave-24104.heroku
 # Application definition
 
 INSTALLED_APPS = [
+    'bcrypt',
     'user_auth_api',
     'rest_framework',
     'corsheaders',
@@ -60,6 +61,10 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
+SESSION_SAVE_EVERY_REQUEST = False
+
+#session cookies will be stored in users' browsers for SESSION_COOKIE_AGE seconds, which defaults to two weeks (1,209,600 seconds. use this if you don't want users to have to log in every time they open a browser)
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 ROOT_URLCONF = 'music_backend2.urls'
 
@@ -80,7 +85,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'music_backend2.wsgi.application'
-
+DJANGO_SETTINGS_MODULE = 'django-admin'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -88,7 +93,7 @@ WSGI_APPLICATION = 'music_backend2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'music_api',
+        'NAME': 'music_backend2',
         'USER': '',
         'PASSWORD': '',
         'HOST': 'localhost'
@@ -97,6 +102,18 @@ DATABASES = {
 
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
+
+
+############
+# Bcrypt password Hashers
+############
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+]
+
 
 
 # Password validation
@@ -133,7 +150,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
