@@ -61,6 +61,10 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
+SESSION_SAVE_EVERY_REQUEST = False
+
+#session cookies will be stored in users' browsers for SESSION_COOKIE_AGE seconds, which defaults to two weeks (1,209,600 seconds. use this if you don't want users to have to log in every time they open a browser)
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 ROOT_URLCONF = 'music_backend2.urls'
 
@@ -81,7 +85,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'music_backend2.wsgi.application'
-
+DJANGO_SETTINGS_MODULE = 'django-admin'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -89,7 +93,7 @@ WSGI_APPLICATION = 'music_backend2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'music_api',
+        'NAME': 'music_backend2',
         'USER': '',
         'PASSWORD': '',
         'HOST': 'localhost'
