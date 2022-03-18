@@ -11,7 +11,7 @@ class UserAccount(models.Model):
 
 
 class Account(models.Model):
-    user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
+    owner = models.ForeignKey(UserAccount, related_name='account', on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=100, blank = True)
     location = models.CharField(max_length=100, blank = True)
     genre_choices = [
