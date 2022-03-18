@@ -1,13 +1,15 @@
 from django.db import models
 
 # Create your models here.
-class User(models.Model):
+class UserAccount(models.Model):
     name = models.CharField(max_length=100)
+    email = models.CharField(max_length=100, default='default@gmail.com')
     username = models.CharField(max_length=100, unique=True)
     password = models.CharField(max_length=1000)
 
+
 class Account(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, blank = True)
     location = models.CharField(max_length=100, blank = True)
     genre_choices = [

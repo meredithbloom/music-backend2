@@ -61,6 +61,8 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
+SESSION_SAVE_EVERY_REQUEST = False
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 ROOT_URLCONF = 'music_backend2.urls'
 
@@ -81,7 +83,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'music_backend2.wsgi.application'
-
+DJANGO_SETTINGS_MODULE = 'django-admin'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
