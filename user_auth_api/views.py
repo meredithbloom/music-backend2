@@ -36,6 +36,9 @@ class UserAccountList(generics.ListCreateAPIView):
 # GET /users/:id
 # DELETE /users/:id
 # PUT /users/:id
+class UserAccountDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = UserAccount.objects.all().order_by('id')
+    serializer_class = UserAccountSerializer
 
 
 class AccountList(generics.ListCreateAPIView):
@@ -47,9 +50,6 @@ class AccountDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AccountSerializer
 
 
-class UserAccountDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = UserAccount.objects.all().order_by('id')
-    serializer_class = UserAccountSerializer
     
     
 
