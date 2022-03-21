@@ -10,9 +10,9 @@ class UserAccount(models.Model):
     password = models.CharField(max_length=1000)
 
 
+
 class Account(models.Model):
-    owner = models.ForeignKey(UserAccount, related_name='account', on_delete=models.CASCADE, null=True)
-    name = models.CharField(max_length=100, blank = True)
+    owner = models.OneToOneField(UserAccount, related_name='account', on_delete=models.CASCADE, null=True)
     location = models.CharField(max_length=100, blank = True)
     genre_choices = [
         ('pop', 'Pop'),
