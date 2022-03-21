@@ -1,7 +1,6 @@
 from django.db import models
 
 
-
 # Create your models here.
 
 class Song(models.Model):
@@ -20,6 +19,6 @@ class Song(models.Model):
         ('indie', 'Indie'),
     ]
     genre = models.CharField(max_length = 100, choices=GENRE_CHOICES, default='', blank = True)
-    audio = models.FileField(upload_to='api/songs/')
+    audio = models.FileField(upload_to='uploads/')
     image = models.CharField(max_length = 100, default = 'https://i.imgur.com/D3aOVsJ.png', blank = True)
     price = models.DecimalField(max_digits=6, decimal_places=2, default = '1.29', blank = True)
