@@ -36,20 +36,21 @@ class UserAccountList(generics.ListCreateAPIView):
 # GET /users/:id
 # DELETE /users/:id
 # PUT /users/:id
+class UserAccountDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = UserAccount.objects.all().order_by('id')
+    serializer_class = UserAccountSerializer
 
 
 class AccountList(generics.ListCreateAPIView):
     queryset = Account.objects.all().order_by('id') # tell django how to retrieve all objects from the DB, order by id ascending
     serializer_class = AccountSerializer # tell django what serializer to use
 
+
 class AccountDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Account.objects.all().order_by('id')
     serializer_class = AccountSerializer
 
 
-class UserAccountDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = UserAccount.objects.all().order_by('id')
-    serializer_class = UserAccountSerializer
     
     
 
