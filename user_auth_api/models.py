@@ -11,10 +11,6 @@ class UserAccount(models.Model):
     password = models.CharField(max_length=1000)
 
 
-
-
-
-
 # choices
 #(actual value to be set on model, human readable name)
 
@@ -36,6 +32,6 @@ class Account(models.Model):
     ]
     favorite_genres = ArrayField(
         models.CharField(
-            max_length = 1000, choices=GENRE_CHOICES, default=GENRE_CHOICES, blank = True)
+            max_length = 1000, choices=GENRE_CHOICES, default=list, blank = True)
     )
     image = models.CharField(max_length = 100, default='https://imgur.com/V4RclNb',  blank = True)
