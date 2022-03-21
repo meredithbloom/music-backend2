@@ -26,5 +26,8 @@ class Account(models.Model):
         ('alternative', 'Alternative'),
         ('indie', 'Indie'),
     ]
-    favoritegenre = models.CharField(max_length = 100, choices=genre_choices, default='', blank = True)
+    favoritegenre = ArrayField(
+        models.CharField(
+            max_length = 1000, choices=genre_choices, default=list, blank = True), default = list
+    )
     image = models.CharField(max_length = 100, default='https://i.imgur.com/V4RclNb.png',  blank = True)

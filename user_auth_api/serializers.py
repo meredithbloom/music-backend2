@@ -37,11 +37,7 @@ class UserAccountSerializer(serializers.ModelSerializer):
 
 class AccountSerializer(serializers.ModelSerializer):
     # serializers.ModelSerializer just tells django to convert sql to JSON
-    owner = UserAccountSerializer(read_only = False)
+    # owner = UserAccountSerializer(read_only = False)
     class Meta:
         model = Account # tell django which model to use
         fields = ('id', 'owner', 'location', 'favoritegenre', 'image') # tell django which fields to include
-
-    def create(self, validated_data):
-        print(owner)
-        account = Account.objects.get(owner=user)
