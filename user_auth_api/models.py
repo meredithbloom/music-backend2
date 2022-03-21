@@ -13,7 +13,7 @@ class UserAccount(models.Model):
 
 class Account(models.Model):
     owner = models.OneToOneField(UserAccount, related_name='account', on_delete=models.CASCADE, null=True)
-    location = models.CharField(max_length=100, blank = True)
+    location = models.CharField(max_length=100, default='unknown', blank = True)
     genre_choices = [
         ('pop', 'Pop'),
         ('rock', 'Rock'),
@@ -27,4 +27,4 @@ class Account(models.Model):
         ('indie', 'Indie'),
     ]
     favoritegenre = models.CharField(max_length = 100, choices=genre_choices, default='', blank = True)
-    image = models.CharField(max_length = 100, blank = True)
+    image = models.CharField(max_length = 100, default='https://imgur.com/V4RclNb',  blank = True)
