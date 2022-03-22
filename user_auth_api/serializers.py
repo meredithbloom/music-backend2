@@ -40,4 +40,4 @@ class AccountSerializer(serializers.ModelSerializer):
     # owner = UserAccountSerializer(read_only = False)
     class Meta:
         model = Account # tell django which model to use
-        fields = ('id', 'owner', 'location', 'favoritegenre', 'image') # tell django which fields to include
+        fields = ('id', 'owner', 'location', 'favorite_genres', 'image') # tell django which fields to include
