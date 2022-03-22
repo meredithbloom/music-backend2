@@ -1,5 +1,6 @@
-from django.db import models
 from django.contrib.postgres.fields import ArrayField
+from django.db import models
+
 
 
 # Create your models here.
@@ -10,9 +11,12 @@ class UserAccount(models.Model):
     password = models.CharField(max_length=1000)
 
 
+# choices
+#(actual value to be set on model, human readable name)
+
 
 class Account(models.Model):
-    owner = models.OneToOneField(UserAccount, related_name='account', on_delete=models.CASCADE, null=True)
+    owner = models.OneToOneField(UserAccount, related_name='account', on_delete=models.CASCADE, primary_key=True)
     location = models.CharField(max_length=100, default='unknown', blank = True)
     GENRE_CHOICES = [
         ('pop', 'Pop'),
@@ -28,6 +32,6 @@ class Account(models.Model):
     ]
     favorite_genres = ArrayField(
         models.CharField(
-            max_length = 1000, choices=GENRE_CHOICES, default=list, blank = True), default = list
+            max_length = 1000, choices=GENRE_CHOICES, default=list, blank = True)
     )
-    image = models.CharField(max_length = 100, default='https://i.imgur.com/V4RclNb.png',  blank = True)
+    image = models.CharField(max_length = 100, default='https://imgur.com/V4RclNb',  blank = True)
