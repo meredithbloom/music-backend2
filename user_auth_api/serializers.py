@@ -9,7 +9,7 @@ from django.contrib.auth.hashers import make_password, check_password
 #converts python in models to JSON
 class UserAccountSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserAccount 
+        model = UserAccount
         fields = ('id', 'name', 'username', 'password')
 
 
@@ -41,6 +41,9 @@ class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account # tell django which model to use
         fields = ('owner', 'location', 'favorite_genres', 'image') # tell django which fields to include
+<<<<<<< HEAD
 
     
     
+=======
+>>>>>>> 9683c4c65c5e737936c3f2d4e5864b3004a0327e

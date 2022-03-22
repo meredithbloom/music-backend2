@@ -5,11 +5,11 @@ from rest_framework import generics
 from .models import Account
 from .serializers import AccountSerializer
 from .serializers import UserAccountSerializer
-from .models import UserAccount 
+from .models import UserAccount
 
 
 #allows you to create and check passwords
-from django.contrib import auth 
+from django.contrib import auth
 from django.contrib.auth.hashers import make_password, check_password
 
 #allows you to send json as a response
@@ -51,8 +51,8 @@ class AccountDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AccountSerializer
 
 
-    
-    
+
+
 
 # this is the function that checks auth
 def check_login(request):
@@ -73,7 +73,7 @@ def check_login(request):
                 #if passwords match, return a user dictionary/objects & set session object
                 request.session['id'] = 'id'
                 # auth.login(request, user)
-                
+
                 return JsonResponse({'id': user.id, 'username': user.username, 'name': user.name})
             else: # passwords don't match, return an empty dictionary
                 return JsonResponse({})
@@ -86,5 +86,3 @@ def logout_view(request):
     auth.logout(request)
     return HttpResponseRedirect("/useraccount/loggedout/")
     #redirect to success page
-    
-
