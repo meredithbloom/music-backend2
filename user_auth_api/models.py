@@ -16,7 +16,7 @@ class UserAccount(models.Model):
 
 
 class Account(models.Model):
-    owner = models.OneToOneField(UserAccount, related_name='account', on_delete=models.CASCADE, null=True)
+    owner = models.OneToOneField(UserAccount, related_name='account', on_delete=models.CASCADE, primary_key=True)
     location = models.CharField(max_length=100, default='unknown', blank = True)
     GENRE_CHOICES = [
         ('pop', 'Pop'),
