@@ -1,4 +1,4 @@
-from rest_framework import serializers
+from rest_framework import serializers, fields
 
 from .models import Account, UserAccount
 
@@ -9,7 +9,7 @@ from django.contrib.auth.hashers import make_password, check_password
 #converts python in models to JSON
 class UserAccountSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserAccount 
+        model = UserAccount
         fields = ('id', 'name', 'username', 'password')
 
 
@@ -35,9 +35,9 @@ class UserAccountSerializer(serializers.ModelSerializer):
         return user
 
 
-class AccountSerializer(serializers.ModelSerializer): # serializers.ModelSerializer just tells django to convert sql to JSON
+class AccountSerializer(serializers.ModelSerializer):
+    # serializers.ModelSerializer just tells django to convert sql to JSON
+    # owner = UserAccountSerializer(read_only = True)
     class Meta:
         model = Account # tell django which model to use
-        fields = ('id', 'user', 'name', 'location', 'favoritegenre', 'image') # tell django which fields to include
-
-    
+        fields = ('owner', 'location', 'favorite_genres', 'image') # tell django which fields to include

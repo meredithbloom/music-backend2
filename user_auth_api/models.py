@@ -1,3 +1,4 @@
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
 
@@ -10,11 +11,14 @@ class UserAccount(models.Model):
     password = models.CharField(max_length=1000)
 
 
+# choices
+#(actual value to be set on model, human readable name)
+
+
 class Account(models.Model):
-    user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100, blank = True)
-    location = models.CharField(max_length=100, blank = True)
-    genre_choices = [
+    owner = models.OneToOneField(UserAccount, related_name='account', on_delete=models.CASCADE, primary_key=True)
+    location = models.CharField(max_length=100, default='unknown', blank = True)
+    GENRE_CHOICES = [
         ('pop', 'Pop'),
         ('rock', 'Rock'),
         ('techno', 'Techno'),
@@ -26,5 +30,8 @@ class Account(models.Model):
         ('alternative', 'Alternative'),
         ('indie', 'Indie'),
     ]
-    favoritegenre = models.CharField(max_length = 100, choices=genre_choices, default='', blank = True)
-    image = models.CharField(max_length = 100, blank = True)
+    favorite_genres = ArrayField(
+        models.CharField(
+            max_length = 1000, choices=GENRE_CHOICES, default=list, blank = True)
+    )
+    image = models.CharField(max_length = 100, default='https://imgur.com/V4RclNb',  blank = True)
